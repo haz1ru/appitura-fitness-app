@@ -6,6 +6,7 @@ class FitTheme {
   
   // Text Colors
   static const Color whiteText = Color(0xFFFFFFFF);
+  static const Color blackText = Color(0x00000000);
 
   //Button Colors
   static const Color meroonBut = Color(0xFF6C0B0B);
