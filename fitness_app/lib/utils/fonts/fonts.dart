@@ -21,12 +21,60 @@ class Fonts {
         color: FitTheme.whiteText,
       );
 
-  static TextStyle get dText => const TextStyle(
+  static TextStyle get bText => const TextStyle(
+        fontFamily: primaryFont,
+        fontSize: sizeD,
+        fontWeight: regular,
+        color: FitTheme.whiteText,
+      );    
+
+  static TextStyle get cText => const TextStyle(
+        fontFamily: primaryFont,
+        fontSize: sizeD,
+        fontWeight: regular,
+        color: FitTheme.whiteText,
+      );
+  
+    static TextStyle get dText => const TextStyle(
         fontFamily: primaryFont,
         fontSize: sizeD,
         fontWeight: regular,
         color: FitTheme.whiteText,
       );
 
-  
+  static TextStyle get eText => const TextStyle(
+        fontFamily: primaryFont,
+        fontSize: sizeE,
+        fontWeight: regular,
+        color: FitTheme.whiteText,
+      );
+
+    static TextStyle get eTextfade1 => TextStyle(
+      fontFamily: primaryFont,
+      fontSize: sizeE,
+      fontWeight: regular,
+      color: FitTheme.whiteText.withOpacity(0.5),
+      );
+
+    static TextStyle get eTextfade2 => TextStyle(
+      fontFamily: primaryFont,
+      fontSize: sizeE,
+      fontWeight: regular,
+      color: FitTheme.whiteText.withOpacity(0.8),
+      );  
+    
+  static TextStyle get fText => const TextStyle(
+        fontFamily: primaryFont,
+        fontSize: sizeF,
+        fontWeight: regular,
+        color: FitTheme.whiteText,
+      );
+
+  static TextStyle get fTextBlck => const TextStyle(
+        fontFamily: primaryFont,
+        fontSize: sizeF,
+        fontWeight: regular,
+        color: FitTheme.blackText,
+      );    
+
 }
