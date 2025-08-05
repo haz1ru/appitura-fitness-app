@@ -23,14 +23,21 @@ class Fonts {
 
   static TextStyle get bText => const TextStyle(
         fontFamily: primaryFont,
-        fontSize: sizeD,
+        fontSize: sizeB,
         fontWeight: regular,
         color: FitTheme.whiteText,
-      );    
+      ); 
+
+  static TextStyle get bTextBlck => const TextStyle(
+        fontFamily: primaryFont,
+        fontSize: sizeB,
+        fontWeight: regular,
+        color: FitTheme.blackText,
+      );        
 
   static TextStyle get cText => const TextStyle(
         fontFamily: primaryFont,
-        fontSize: sizeD,
+        fontSize: sizeC,
         fontWeight: regular,
         color: FitTheme.whiteText,
       );

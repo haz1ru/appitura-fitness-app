@@ -10,5 +10,7 @@ class FitTheme {
 
   //Button Colors
   static const Color meroonBut = Color(0xFF6C0B0B);
+  static const Color redBut = Color(0xFFE92222);
+
   
 }

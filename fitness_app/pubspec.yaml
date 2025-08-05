@@ -76,6 +76,8 @@ flutter:
       - lib/assets/image6.jpg
       - lib/assets/image7.jpg
       - lib/assets/image8.jpg
+      - lib/assets/image9.jpg
+      - lib/assets/image10.jpg
 
   #   - images/a_dot_ham.jpeg
 
