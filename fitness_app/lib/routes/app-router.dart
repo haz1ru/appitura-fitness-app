@@ -1,3 +1,4 @@
+import 'package:fitness_app/screens/summary_screen.dart';
 import 'package:fitness_app/screens/workout_plan_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:fitness_app/screens/splash_screen.dart';
@@ -21,6 +22,11 @@ class AppRouter {
         path: '/workout-plan',
         name: 'workoutPlan',
         builder: (context, state) => const WorkoutPlanScreen(),
+      ),
+      GoRoute(
+        path: '/summary',
+        name: 'summary',
+        builder: (context, state) => const SummaryScreen(),
       ),
     ],
   );
