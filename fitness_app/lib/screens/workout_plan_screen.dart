@@ -1,7 +1,8 @@
+import 'package:fitness_app/widgets/start_training_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fitness_app/utils/colors/colors.dart';
 import 'package:fitness_app/utils/fonts/fonts.dart';
-import 'package:fitness_app/widgets/start_training_button_widget.dart';
 import 'package:go_router/go_router.dart';
 
 class WorkoutPlanScreen extends StatelessWidget {
@@ -19,10 +20,10 @@ class WorkoutPlanScreen extends StatelessWidget {
               Stack(
                 children: [
                   Container(
-                    height: 300,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    height: 300.h,
+                    margin: EdgeInsets.symmetric(horizontal: 16.w),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       image: const DecorationImage(
                         image: AssetImage('lib/assets/image9.jpg'),
                         fit: BoxFit.cover,
@@ -30,10 +31,10 @@ class WorkoutPlanScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 425,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    height: 425.h,
+                    margin: EdgeInsets.symmetric(horizontal: 16.w),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -44,7 +45,7 @@ class WorkoutPlanScreen extends StatelessWidget {
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: EdgeInsets.all(20.w),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,82 +54,99 @@ class WorkoutPlanScreen extends StatelessWidget {
                             'Full Body Workout',
                             style: Fonts.bText,
                           ),
-                          const SizedBox(height: 40),
+                          SizedBox(height: 40.h),
+
                           Row(
                             children: [
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
                                 decoration: BoxDecoration(
                                   color: FitTheme.redBut,
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(20.r),
                                   border: Border.all(color: FitTheme.redBut),
                                 ),
                                 child: Text('Cardio', style: Fonts.fText),
                               ),
-                              const SizedBox(width: 15),
+                              SizedBox(width: 15.w),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
                                 decoration: BoxDecoration(
                                   color: FitTheme.redBut,
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(20.r),
                                   border: Border.all(color: FitTheme.redBut),
                                 ),
                                 child: Text('Boxing', style: Fonts.fText),
                               ),
-                              const SizedBox(width: 15),
+                              SizedBox(width: 15.w),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
                                 decoration: BoxDecoration(
                                   color: FitTheme.redBut,
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(20.r),
                                   border: Border.all(color: FitTheme.redBut),
                                 ),
                                 child: Text('Zumba', style: Fonts.fText),
                               ),
-                              const SizedBox(width: 15),
+                              SizedBox(width: 15.w),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
                                 decoration: BoxDecoration(
                                   color: FitTheme.redBut,
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(20.r),
                                   border: Border.all(color: FitTheme.redBut),
                                 ),
                                 child: Text('Hiking', style: Fonts.fText),
                               ),
-                              const SizedBox(width: 15),
                             ],
                           ),
-                          const SizedBox(height: 10),
-                          StartTrainingButton(onPressed: () {
-                            context.go('/summary');
-                          }),
-                          const SizedBox(height: 2),
+                          
+                          SizedBox(height: 10.h),
+                          
+                          SizedBox(
+                            width: double.infinity,
+                            child: StartTrainingButton(
+                            onPressed: () {
+                              context.go('/summary');
+                            },
+                          ),
+                          ),
+                          
+                          SizedBox(height: 2.h),
                         ],
                       ),
                     ),
                   ),
                   Positioned(
-                    top: 20,
-                    left: 30,
+                    top: 20.h,
+                    left: 30.w,
                     child: GestureDetector(
                       onTap: () => context.go('/home'),
-                      child: const Icon(
-                        Icons.arrow_back_ios_new,
-                        color: FitTheme.whiteText,
-                        size: 20,
+                      child: Container(
+                        width: 40.w,
+                        height: 40.w,
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
+                          color: FitTheme.whiteText,
+                          size: 20.sp,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 1),
+              
+              SizedBox(height: 1.h),
 
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(20),
+                margin: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.all(20.w),
                 decoration: BoxDecoration(
                   color: FitTheme.whiteText,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,44 +155,44 @@ class WorkoutPlanScreen extends StatelessWidget {
                       'Round 01',
                       style: TextStyle(
                         fontFamily: Fonts.primaryFont,
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     Row(
                       children: [
                         Container(
-                          width: 60,
-                          height: 60,
+                          width: 60.w,
+                          height: 60.w,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(12.r),
                             image: const DecorationImage(
                               image: AssetImage('lib/assets/image10.jpg'),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        SizedBox(width: 16.w),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
                                 'Side Stretch Left',
                                 style: TextStyle(
                                   fontFamily: Fonts.primaryFont,
-                                  fontSize: 10,
+                                  fontSize: 10.sp,
                                   color: Colors.black,
                                 ),
                               ),
-                              SizedBox(height: 4),
+                              SizedBox(height: 4.h),
                               Text(
                                 '3x',
                                 style: TextStyle(
                                   fontFamily: Fonts.primaryFont,
-                                  fontSize: 10,
+                                  fontSize: 10.sp,
                                   color: Colors.grey,
                                 ),
                               ),
@@ -182,50 +200,54 @@ class WorkoutPlanScreen extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          width: 40,
-                          height: 40,
+                          width: 40.w,
+                          height: 40.w,
                           decoration: const BoxDecoration(
                             color: FitTheme.redBut,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.play_arrow, color: FitTheme.whiteText, size: 20),
+                          child: Icon(
+                            Icons.play_arrow, 
+                            color: FitTheme.whiteText, 
+                            size: 20.sp
+                          ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
 
                     Row(
                       children: [
                         Container(
-                          width: 60,
-                          height: 60,
+                          width: 60.w,
+                          height: 60.w,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(12.r),
                             image: const DecorationImage(
                               image: AssetImage('lib/assets/image10.jpg'),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        SizedBox(width: 16.w),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
                                 'Side Stretch Right',
                                 style: TextStyle(
                                   fontFamily: Fonts.primaryFont,
-                                  fontSize: 10,
+                                  fontSize: 10.sp,
                                   color: Colors.black,
                                 ),
                               ),
-                              SizedBox(height: 4),
+                              SizedBox(height: 4.h),
                               Text(
                                 '3x',
                                 style: TextStyle(
                                   fontFamily: Fonts.primaryFont,
-                                  fontSize: 10,
+                                  fontSize: 10.sp,
                                   color: Colors.grey,
                                 ),
                               ),
@@ -233,73 +255,78 @@ class WorkoutPlanScreen extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          width: 40,
-                          height: 40,
+                          width: 40.w,
+                          height: 40.w,
                           decoration: const BoxDecoration(
                             color: FitTheme.redBut,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.play_arrow, color: FitTheme.whiteText, size: 20),
+                          child: Icon(
+                            Icons.play_arrow, 
+                            color: FitTheme.whiteText, 
+                            size: 20.sp
+                          ),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              
+              SizedBox(height: 20.h),
 
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                padding: const EdgeInsets.all(20),
+                margin: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.all(20.w),
                 decoration: BoxDecoration(
                   color: FitTheme.whiteText,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Round 01',
+                      'Round 02',
                       style: TextStyle(
                         fontFamily: Fonts.primaryFont,
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
 
                     Row(
                       children: [
                         Container(
-                          width: 60,
-                          height: 60,
+                          width: 60.w,
+                          height: 60.w,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(12.r),
                             image: const DecorationImage(
                               image: AssetImage('lib/assets/image10.jpg'),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        SizedBox(width: 16.w),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
-                                'Side Stretch Left',
+                                'Jumping Jacks',
                                 style: TextStyle(
                                   fontFamily: Fonts.primaryFont,
-                                  fontSize: 10,
+                                  fontSize: 10.sp,
                                   color: Colors.black,
                                 ),
                               ),
-                              SizedBox(height: 4),
+                              SizedBox(height: 4.h),
                               Text(
-                                '3x',
+                                '10x',
                                 style: TextStyle(
                                   fontFamily: Fonts.primaryFont,
-                                  fontSize: 10,
+                                  fontSize: 10.sp,
                                   color: Colors.grey,
                                 ),
                               ),
@@ -307,50 +334,54 @@ class WorkoutPlanScreen extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          width: 40,
-                          height: 40,
+                          width: 40.w,
+                          height: 40.w,
                           decoration: const BoxDecoration(
                             color: FitTheme.redBut,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.play_arrow, color: FitTheme.whiteText, size: 20),
+                          child: Icon(
+                            Icons.play_arrow, 
+                            color: FitTheme.whiteText, 
+                            size: 20.sp
+                          ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
 
                     Row(
                       children: [
                         Container(
-                          width: 60,
-                          height: 60,
+                          width: 60.w,
+                          height: 60.w,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(12.r),
                             image: const DecorationImage(
                               image: AssetImage('lib/assets/image10.jpg'),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        SizedBox(width: 16.w),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
-                                'Side Stretch Right',
+                                'Push Ups',
                                 style: TextStyle(
                                   fontFamily: Fonts.primaryFont,
-                                  fontSize: 10,
+                                  fontSize: 10.sp,
                                   color: Colors.black,
                                 ),
                               ),
-                              SizedBox(height: 4),
+                              SizedBox(height: 4.h),
                               Text(
-                                '3x',
+                                '5x',
                                 style: TextStyle(
                                   fontFamily: Fonts.primaryFont,
-                                  fontSize: 10,
+                                  fontSize: 10.sp,
                                   color: Colors.grey,
                                 ),
                               ),
@@ -358,20 +389,25 @@ class WorkoutPlanScreen extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          width: 40,
-                          height: 40,
+                          width: 40.w,
+                          height: 40.w,
                           decoration: const BoxDecoration(
                             color: FitTheme.redBut,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.play_arrow, color: FitTheme.whiteText, size: 20),
+                          child: Icon(
+                            Icons.play_arrow, 
+                            color: FitTheme.whiteText, 
+                            size: 20.sp
+                          ),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              
+              SizedBox(height: 20.h),
             ],
           ),
         ),

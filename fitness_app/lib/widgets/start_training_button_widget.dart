@@ -1,3 +1,5 @@
+import 'package:fitness_app/utils/colors/colors.dart';
+import 'package:fitness_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
 
 class StartTrainingButton extends StatelessWidget {
@@ -12,47 +14,56 @@ class StartTrainingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // Red long button
-        Expanded(
-          child: Container(
-            height: 40,
-            decoration: BoxDecoration(
-              color: const Color(0xFF6B0F0F), // Dark red
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Center(
-              child: Text(
-                text,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Row(
+        children: [
+          // Red long button
+          Expanded(
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                color: FitTheme.meroonBut,
+                borderRadius: BorderRadius.circular(40),
+              ),
+              child: Center(
+                child: Text(
+                  text,
+                  style: Fonts.cText,
                 ),
               ),
             ),
           ),
-        ),
-        const SizedBox(width: 8),
-        // Circle play icon
-        InkWell(
-          onTap: onPressed,
-          borderRadius: BorderRadius.circular(30),
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: const BoxDecoration(
-              color: Colors.white,
+          Container(
+            width: 13,
+            height: 7,
+            color: const Color(0xFF6C0B0B),
+          ),
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
+              color: FitTheme.meroonBut,
             ),
-            child: const Icon(
-              Icons.play_arrow,
-              color: Color(0xFF6B0F0F),
+            child: Center(
+              child: Container(
+                width: 35,
+                height: 35,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: FitTheme.whiteText, 
+                ),
+                child: const Icon(
+                  Icons.play_arrow,
+                  color: FitTheme.meroonBut, 
+                  size: 25,
+                ),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

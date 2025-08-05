@@ -1,8 +1,8 @@
 import 'package:fitness_app/utils/colors/colors.dart';
+import 'package:fitness_app/utils/fonts/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:fitness_app/utils/fonts/fonts.dart';
 
 class SummaryScreen extends StatelessWidget {
   const SummaryScreen({super.key});
@@ -18,194 +18,197 @@ class SummaryScreen extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  FitTheme.meroonBut, // Your maroon color
-                  FitTheme.backgroundColor, // Your black background
+                  FitTheme.meroonBut,
+                  FitTheme.backgroundColor,
                 ],
               ),
             ),
           ),
 
-          Positioned(
-                    top: 30,
-                    left: 30,
-                    child: GestureDetector(
-                      onTap: () => context.go('/workout-plan'),
-                      child: const Icon(
-                        Icons.arrow_back_ios_new,
-                        color: FitTheme.whiteText,
-                        size: 20,
+          SafeArea(
+            child: Column(
+              children: [
+                _buildHeader(context),
+
+                Expanded(
+                  child: _buildContent(),
+                ),
+                
+                _buildBottomSection(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _buildHeader(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: () => context.go('/workout-plan'),
+            child: Container(
+              width: 40.w,
+              height: 40.w,
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                color: FitTheme.whiteText,
+                size: 20.sp,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              'Daily Progress',
+              textAlign: TextAlign.center,
+              style: Fonts.bText
+            ),
+          ),
+          SizedBox(width: 40.w),
+        ],
+      ),
+    );
+  }
+
+  _buildContent() {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 10.h),
+              Container(
+                width: double.infinity,
+                height: constraints.maxHeight,
+                margin: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Stack(
+                  children: [
+                    // Background image
+                    Positioned.fill(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20.r),
+                        child: Image.asset(
+                          'lib/assets/image11.png',
+                          fit: BoxFit.cover,
+                          
+                        ),
                       ),
                     ),
-                  ),
 
-          Positioned(
-            top: 58.h,
-            left: 49.w,
-            child: SizedBox(
-              width: 261.w,
-              height: 26.h,
-              child: Text(
-                'Daily Progress',
-                textAlign: TextAlign.center,
-                style: Fonts.bText,
-              ),
-            ),
-          ),
-
-          Positioned(
-            top: 91.h,
-            left: 94.w,
-            child: Image.asset(
-              'lib/assets/image11.png',
-              width: 281.w,
-              height: 721.h,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
-                width: 281.w,
-                height: 721.h,
-                color: Colors.grey[800],
-                child: Icon(
-                  Icons.image_not_supported,
-                  color: Colors.grey[600],
-                  size: 30.w,
+                    _buildStatsOverlay(),
+                  ],
                 ),
               ),
-            ),
+              
+              SizedBox(height: 30.h),
+            ],
           ),
+        );
+      },
+    );
+  }
 
-          Positioned(
-            top: 375.h,
-            left: 29.w,
-            child: SizedBox(
-              width: 65.w,
-              height: 26.h,
-              child: Text('05:85', style: Fonts.cText),
-            ),
+  _buildStatsOverlay() {
+    return Positioned(
+      left: 20.w,
+      top: 270.h,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildStatItem('05:85', 'Time Spent'),
+          SizedBox(height: 30.h),
+          _buildStatItem('850', 'Heart Rate'),
+          SizedBox(height: 30.h),
+          _buildStatItem('1200', 'Calories'),
+          SizedBox(height: 30.h),
+          _buildStatItem('8500', 'Steps'),
+        ],
+      ),
+    );
+  }
+
+  _buildStatItem(String value, String label) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          value,
+          style: TextStyle(
+            color: FitTheme.whiteText,
+            fontSize: 24.sp,
+            fontWeight: FontWeight.bold,
           ),
-
-          Positioned(
-            top: 401.h,
-            left: 29.w,
-            child: SizedBox(
-              width: 65.w,
-              height: 15.h,
-              child: Text('Time Spent', style: Fonts.eText),
-            ),
+        ),
+        SizedBox(height: 4.h),
+        Text(
+          label,
+          style: TextStyle(
+            color: FitTheme.whiteText.withOpacity(0.8),
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
           ),
+        ),
+      ],
+    );
+  }
 
-          Positioned(
-            top: 449.h,
-            left: 29.w,
-            child: SizedBox(
-              width: 65.w,
-              height: 26.h,
-              child: Text('850', style: Fonts.cText),
-            ),
+  _buildBottomSection() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+      decoration: BoxDecoration(
+        color: FitTheme.backgroundColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.r),
+          topRight: Radius.circular(20.r),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.access_time,
+                color: FitTheme.whiteText,
+                size: 24.sp,
+              ),
+              SizedBox(width: 8.w),
+              Text(
+                '3hrs',
+                style: TextStyle(
+                  color: FitTheme.whiteText,
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
-
-          Positioned(
-            top: 475.h,
-            left: 29.w,
-            child: SizedBox(
-              width: 65.w,
-              height: 15.h,
-              child: Text('Heart Rate', style: Fonts.eText),
-            ),
-          ),
-
-          Positioned(
-            top: 515.h,
-            left: 29.w,
-            child: SizedBox(
-              width: 65.w,
-              height: 26.h,
-              child: Text('1200', style: Fonts.cText),
-            ),
-          ),
-
-          Positioned(
-            top: 541.h,
-            left: 29.w,
-            child: SizedBox(
-              width: 65.w,
-              height: 15.h,
-              child: Text('Calories', style: Fonts.eText),
-            ),
-          ),
-
-          Positioned(
-            top: 585.h,
-            left: 29.w,
-            child: SizedBox(
-              width: 65.w,
-              height: 26.h,
-              child: Text('8500', style: Fonts.cText),
-            ),
-          ),
-
-          Positioned(
-            top: 611.h,
-            left: 29.w,
-            child: SizedBox(
-              width: 65.w,
-              height: 15.h,
-              child: Text('Steps', style: Fonts.eText),
-            ),
-          ),
-
-          Positioned(
-            top: 739.h,
-            left: 0,
-            child: Container(
-              width: 375.w, 
-              height: 73.h, 
-              color: FitTheme.backgroundColor,
-            ),
-          ),
-
-          // Clock icon
-          Positioned(
-            top: 655.h,
-            left: 62.w,
-            child: Image.asset(
-              'assets/icon/icon_clock.png',
-              width: 26.w,
-              height: 29.h,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) =>
-                  Icon(Icons.access_time, color: FitTheme.whiteText, size: 26.w),
-            ),
-          ),
-
-          Positioned(
-            top: 655.h,
-            left: 260.w,
-            child: Image.asset(
-              'lib/assets/icon_location.png',
-              width: 26.w,
-              height: 29.h,
-              fit: BoxFit.contain,
-            ),
-          ),
-
-          Positioned(
-            top: 657.h,
-            left: 102.w,
-            child: SizedBox(
-              width: 65.w,
-              height: 26.h,
-              child: Text('2hrs', style: Fonts.cText),
-            ),
-          ),
-
-          Positioned(
-            top: 657.h,
-            left: 286.w,
-            child: SizedBox(
-              width: 45.w,
-              height: 26.h,
-              child: Text('5km', style: Fonts.cText),
-            ),
+          Row(
+            children: [
+              Image.asset(
+                'lib/assets/icon_location.png',
+                width: 24.sp,
+                height: 24.sp,
+                color: FitTheme.whiteText,
+              ),
+              SizedBox(width: 8.w),
+              Text(
+                '5km',
+                style: TextStyle(
+                  color: FitTheme.whiteText,
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
           ),
         ],
       ),

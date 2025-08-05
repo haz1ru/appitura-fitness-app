@@ -4,53 +4,28 @@ import 'package:go_router/go_router.dart';
 import 'package:fitness_app/utils/colors/colors.dart';
 import 'package:fitness_app/utils/fonts/fonts.dart';
 
-class WorkoutCategory {
-  final String title;
-  final String image;
-  final Color color;
-
-  WorkoutCategory({
-    required this.title,
-    required this.image,
-    required this.color,
-  });
-}
-
-class RecommendedWorkout {
-  final String title;
-  final String image;
-
-  RecommendedWorkout({
-    required this.title,
-    required this.image,
-  });
-}
-
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
-  // Define the data directly in the widget
-  static final List<WorkoutCategory> workoutCategories = [
-    WorkoutCategory(
-      title: "Cycling",
-      image: "lib/assets/image1.jpg",
-      color: Color(0xFF8B0000),
-    ),
-    WorkoutCategory(
-      title: "Gym Workout",
-      image: "lib/assets/image2.jpg",
-      color: Color(0xFFF06666),
-    ),
-  ];
-
-  static final List<RecommendedWorkout> recommendedWorkouts = [
-    RecommendedWorkout(title: "Yoga", image: "lib/assets/image3.jpg"),
-    RecommendedWorkout(title: "Cardio", image: "lib/assets/image4.jpg"),
-    RecommendedWorkout(title: "Stretching", image: "lib/assets/image6.jpg"),
-  ];
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final workoutCategories = [
+      {
+        'image': "lib/assets/image1.jpg",
+        'color': FitTheme.meroonBut,
+      },
+      {
+        'image': "lib/assets/image2.jpg",
+        'color': FitTheme.pinckBut,
+      },
+    ];
+
+    final recommendedWorkouts = [
+      "lib/assets/image3.jpg",
+      "lib/assets/image4.jpg",
+      "lib/assets/image8.jpg",
+    ];
+
     return Scaffold(
       backgroundColor: FitTheme.backgroundColor,
       body: SafeArea(
@@ -64,14 +39,17 @@ class HomeScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Hello Janna",
-                      style: Fonts.aText.copyWith(
-                          fontWeight: FontWeight.w300)),
-                  Text("Let's start exercising",
-                      style: Fonts.aText.copyWith(
-                          fontWeight: FontWeight.w600)),
+                  Text(
+                    "Hello Janna",
+                    style: Fonts.bText,
+                  ),
+                  Text(
+                    "Let's start exercising",
+                    style: Fonts.bText,
+                  ),
                 ],
               ),
+              
               SizedBox(height: 30.h),
 
               Row(
@@ -80,55 +58,49 @@ class HomeScreen extends StatelessWidget {
                   (index) {
                     final category = workoutCategories[index];
                     return Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsets.only(right: index == 0 ? 15.w : 0),
+                      child: Container(
+                        margin: EdgeInsets.only(right: index == 0 ? 15.w : 0),
+                        height: 165.h,
+                        width: 159.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.r),
+                          image: DecorationImage(
+                            image: AssetImage(category['image'] as String),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                         child: Container(
-                          height: 220.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.r),
-                            image: DecorationImage(
-                              image: AssetImage(category.image),
-                              fit: BoxFit.cover,
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.transparent,
+                                Colors.black.withOpacity(0.7)
+                              ],
                             ),
                           ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.r),
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.transparent,
-                                  Colors.black.withOpacity(0.7)
-                                ],
-                              ),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(20.w),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.end,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      context.go('/workout-plan');
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 45.h,
-                                      decoration: BoxDecoration(
-                                        color: category.color,
-                                        borderRadius:
-                                            BorderRadius.circular(25.r),
-                                      ),
-                                      child: Center(
-                                        child: Text("Start", style: Fonts.cText),
-                                      ),
+                          child: Padding(
+                            padding: EdgeInsets.all(20.w),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                GestureDetector(
+                                  onTap: () => context.go('/workout-plan'),
+                                  child: Container(
+                                    width: 91.w,
+                                    height: 22.h,
+                                    decoration: BoxDecoration(
+                                      color: category['color'] as Color,
+                                      borderRadius: BorderRadius.circular(25.r),
+                                    ),
+                                    child: Center(
+                                      child: Text("Start", style: Fonts.eText),
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -137,58 +109,86 @@ class HomeScreen extends StatelessWidget {
                   },
                 ),
               ),
+              
               SizedBox(height: 40.h),
-              Text("Recommended for you", style: Fonts.bText),
+              
+              Text("Recommended for you", style: Fonts.cText),
               SizedBox(height: 20.h),
+              
               Row(
-                children:
-                    recommendedWorkouts.asMap().entries.map(
-                (entry) {
+                children: recommendedWorkouts.asMap().entries.map((entry) {
                   final index = entry.key;
-                  final workout = entry.value;
+                  final image = entry.value;
                   return Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          right: index <
-                                  recommendedWorkouts.length - 1
-                              ? 10.w
-                              : 0),
-                      child: Container(
-                        height: 120.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.r),
-                          image: DecorationImage(
-                            image: AssetImage(workout.image),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.r),
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Colors.transparent,
-                                Colors.black.withOpacity(0.5)
-                              ],
-                            ),
-                          ),
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        right: index < recommendedWorkouts.length - 1 ? 10.w : 0,
+                      ),
+                      height: 82.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.r),
+                        image: DecorationImage(
+                          image: AssetImage(image),
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
                   );
-                },
-              ).toList(),
+                }).toList(),
               ),
               SizedBox(height: 30.h),
 
               Container(
                 width: double.infinity,
-                height: 140.h,
+                height: 103.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.r),
-                  image: const DecorationImage(
+                  image: DecorationImage(
+                    image: AssetImage("lib/assets/image6.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.r),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withOpacity(0.7)
+                      ],
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(20.w),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Find me a personal Trainer",
+                          style: Fonts.cText,
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 8.h),
+                        Text(
+                          "Explore now",
+                          style: Fonts.eTextfade2,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              
+              SizedBox(height: 20.h),
+              
+              Container(
+                width: double.infinity,
+                height: 103.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.r),
+                  image: DecorationImage(
                     image: AssetImage("lib/assets/image7.jpg"),
                     fit: BoxFit.cover,
                   ),
@@ -210,53 +210,22 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Find me a personal Trainer",
-                            style: Fonts.bText, textAlign: TextAlign.center),
+                        Text(
+                          "Find me group classes",
+                          style: Fonts.cText,
+                          textAlign: TextAlign.center,
+                        ),
                         SizedBox(height: 8.h),
-                        Text("Explore now", style: Fonts.eTextfade2),
+                        Text(
+                          "Explore now",
+                          style: Fonts.eTextfade2,
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 20.h),
-
-              Container(
-                width: double.infinity,
-                height: 140.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.r),
-                  image: const DecorationImage(
-                    image: AssetImage("lib/assets/image8.jpg"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.r),
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.transparent,
-                        Colors.black.withOpacity(0.7)
-                      ],
-                    ),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(20.w),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Find me group classes",
-                            style: Fonts.bText, textAlign: TextAlign.center),
-                        SizedBox(height: 8.h),
-                        Text("Explore now", style: Fonts.eTextfade2),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              
               SizedBox(height: 30.h),
             ],
           ),
