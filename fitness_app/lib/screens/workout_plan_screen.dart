@@ -99,7 +99,9 @@ class WorkoutPlanScreen extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 10),
-                          StartTrainingButton(onPressed: () {}),
+                          StartTrainingButton(onPressed: () {
+                            context.go('/summary');
+                          }),
                           const SizedBox(height: 2),
                         ],
                       ),

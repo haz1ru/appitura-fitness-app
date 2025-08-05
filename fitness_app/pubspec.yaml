@@ -78,6 +78,8 @@ flutter:
       - lib/assets/image8.jpg
       - lib/assets/image9.jpg
       - lib/assets/image10.jpg
+      - lib/assets/image11.png
+      - lib/assets/icon_location.png
 
   #   - images/a_dot_ham.jpeg
 
